@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "chapters",
+  "info": {
+    "singularName": "chapter",
+    "pluralName": "chapters",
+    "displayName": "Chapter"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "volume": {
+      "type": "biginteger"
+    },
+    "chapter": {
+      "type": "decimal"
+    },
+    "isLast": {
+      "type": "boolean",
+      "default": false
+    },
+    "manga": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::manga.manga",
+      "inversedBy": "chapters"
+    }
+  }
+}

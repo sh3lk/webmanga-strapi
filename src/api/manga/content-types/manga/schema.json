@@ -1,0 +1,100 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mangas",
+  "info": {
+    "singularName": "manga",
+    "pluralName": "mangas",
+    "displayName": "Manga",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "chapters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::chapter.chapter",
+      "mappedBy": "manga"
+    },
+    "eng_name": {
+      "type": "string"
+    },
+    "orig_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::genre.genre"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Онгоинг",
+        "Завершён",
+        "Анонс",
+        "Приостановлен",
+        "Выпуск прекращён"
+      ],
+      "required": true
+    },
+    "translate_status": {
+      "type": "enumeration",
+      "enum": [
+        "Продолжается",
+        "Завершен",
+        "Заморожен",
+        "Заброшен"
+      ],
+      "required": false
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Манга",
+        "OEL-манга",
+        "Манхва",
+        "Маньхуа",
+        "Руманга",
+        "Комикс западный"
+      ],
+      "required": true
+    },
+    "age_rating": {
+      "type": "enumeration",
+      "enum": [
+        "PEGI-16",
+        "PEGI-18",
+        "Отсутствует"
+      ],
+      "required": true,
+      "default": "Отсутствует"
+    },
+    "formats": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::format.format"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
+    }
+  }
+}

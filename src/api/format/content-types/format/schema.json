@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "formats",
+  "info": {
+    "singularName": "format",
+    "pluralName": "formats",
+    "displayName": "Format"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

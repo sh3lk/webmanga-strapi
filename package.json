@@ -1,0 +1,37 @@
+{
+  "name": "webmanga-cms",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "scaling": "strapi scaling pm2"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@_sh/strapi-plugin-ckeditor": "^1.0.9",
+    "@strapi/plugin-graphql": "^4.1.11",
+    "@strapi/plugin-i18n": "4.1.11",
+    "@strapi/plugin-users-permissions": "4.1.11",
+    "@strapi/strapi": "4.1.11",
+    "@webbio/strapi-plugin-scheduler": "^0.1.0",
+    "pg": "8.6.0",
+    "strapi-plugin-comments": "^2.1.5",
+    "strapi-plugin-entity-relationship-chart": "^4.1.0",
+    "strapi-plugin-notes": "^1.0.1"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "baf0354e-140d-41c9-953c-fb017277e5d6"
+  },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
