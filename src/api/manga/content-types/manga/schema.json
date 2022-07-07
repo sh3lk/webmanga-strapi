@@ -8,12 +8,25 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "name": {
+      "type": "string",
+      "required": true
+    },
+    "eng_name": {
       "type": "string"
+    },
+    "orig_name": {
+      "type": "string"
+    },
+    "alt_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
     },
     "cover": {
       "type": "media",
@@ -23,68 +36,25 @@
         "images"
       ]
     },
-    "chapters": {
+    "type": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::chapter.chapter",
-      "mappedBy": "manga"
-    },
-    "eng_name": {
-      "type": "string"
-    },
-    "orig_name": {
-      "type": "string"
-    },
-    "description": {
-      "type": "text"
-    },
-    "genres": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::genre.genre"
+      "relation": "oneToOne",
+      "target": "api::type.type"
     },
     "status": {
-      "type": "enumeration",
-      "enum": [
-        "Онгоинг",
-        "Завершён",
-        "Анонс",
-        "Приостановлен",
-        "Выпуск прекращён"
-      ],
-      "required": true
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::status.status"
     },
-    "translate_status": {
-      "type": "enumeration",
-      "enum": [
-        "Продолжается",
-        "Завершен",
-        "Заморожен",
-        "Заброшен"
-      ],
-      "required": false
-    },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "Манга",
-        "OEL-манга",
-        "Манхва",
-        "Маньхуа",
-        "Руманга",
-        "Комикс западный"
-      ],
-      "required": true
+    "translation_status": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::translation-status.translation-status"
     },
     "age_rating": {
-      "type": "enumeration",
-      "enum": [
-        "PEGI-16",
-        "PEGI-18",
-        "Отсутствует"
-      ],
-      "required": true,
-      "default": "Отсутствует"
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::age-rating.age-rating"
     },
     "formats": {
       "type": "relation",
@@ -95,6 +65,20 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::tag.tag"
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::genre.genre"
+    },
+    "origin": {
+      "type": "json"
+    },
+    "chapters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::chapter.chapter",
+      "mappedBy": "manga"
     }
   }
 }

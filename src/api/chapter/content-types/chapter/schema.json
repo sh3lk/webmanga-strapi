@@ -4,33 +4,37 @@
   "info": {
     "singularName": "chapter",
     "pluralName": "chapters",
-    "displayName": "Chapter"
+    "displayName": "Chapter (Manga & Hentai)",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "images": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": true,
-      "required": true
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "title": {
       "type": "string"
     },
     "volume": {
-      "type": "biginteger"
+      "type": "integer",
+      "required": true,
+      "min": 0
     },
     "chapter": {
-      "type": "decimal"
+      "type": "decimal",
+      "min": 0,
+      "required": true
     },
-    "isLast": {
-      "type": "boolean",
-      "default": false
+    "origin": {
+      "type": "json"
     },
     "manga": {
       "type": "relation",

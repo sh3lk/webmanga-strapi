@@ -4,7 +4,8 @@
   "info": {
     "singularName": "tag",
     "pluralName": "tags",
-    "displayName": "Tag"
+    "displayName": "Tag (Manga)",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
