@@ -14,6 +14,9 @@ export NVM_DIR="$HOME/.nvm"
 #install node modules
 npm install
 
+#copy .env
+cp /home/ubuntu/.env .
+
 #start node app in pm2
 pm2 start server.js
 pm2 startup
