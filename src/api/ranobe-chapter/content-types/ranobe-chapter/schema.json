@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ranobe_chapters",
+  "info": {
+    "singularName": "ranobe-chapter",
+    "pluralName": "ranobe-chapters",
+    "displayName": "Chapter (Ranobe)",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "richtext"
+    }
+  }
+}

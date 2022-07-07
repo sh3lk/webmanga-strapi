@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ranobes",
+  "info": {
+    "singularName": "ranobe",
+    "pluralName": "ranobes",
+    "displayName": "Ranobe",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

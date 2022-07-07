@@ -1,0 +1,15 @@
+{
+  "kind": "collectionType",
+  "collectionName": "animes",
+  "info": {
+    "singularName": "anime",
+    "pluralName": "animes",
+    "displayName": "Anime",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

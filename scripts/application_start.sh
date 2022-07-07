@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #give permission for everything in the express-app directory
-sudo chmod -R 777 /home/ec2-user/node-application
+sudo chmod -R 777 /home/ubuntu/node-application
 
 #navigate into our working directory where we have all our github files
-cd /home/ec2-user/node-application
+cd /home/ubuntu/node-application
 
 #add npm and node to path
 export NVM_DIR="$HOME/.nvm"
@@ -14,5 +14,7 @@ export NVM_DIR="$HOME/.nvm"
 #install node modules
 npm install
 
-#start our node app in the background
+#start node app in the background
 pm2 start server.js
+pm2 startup
+pm2 save

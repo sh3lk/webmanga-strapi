@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "translation_statuses",
+  "info": {
+    "singularName": "translation-status",
+    "pluralName": "translation-statuses",
+    "displayName": "Translation status (Hentai & Manga & Ranobe)",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

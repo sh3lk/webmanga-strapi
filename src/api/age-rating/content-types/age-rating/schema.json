@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "age_ratings",
+  "info": {
+    "singularName": "age-rating",
+    "pluralName": "age-ratings",
+    "displayName": "Age rating (Manga & Ranobe & Anime)",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}
