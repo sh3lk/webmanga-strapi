@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    name: CI
     runs-on: ubuntu-latest
 
     strategy:
@@ -28,7 +27,6 @@ jobs:
 
 
   deploy:
-    name: CD
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -39,13 +37,6 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v2
-      # copying appspec file
-      - name: Copying appspec.yml
-        run: cp appspec.yml ./bin/app
-      # copying scripts
-      - name: Copying scripts
-        run: cp -R ./scripts ./bin/app/scripts
-      
       # Install AWS CLI 2
       - name: Install AWS CLI 2
         run: |
@@ -67,7 +58,7 @@ jobs:
           --description "Revision of the ${{ matrix.appname }}-${{ github.sha }}" \
           --ignore-hidden-files \
           --s3-location s3://${{ matrix.s3-bucket }}/${{ matrix.s3-filename }}.zip \
-          --source ./bin/app
+          --source .
       # Creating deployment via CodeDeploy
       - name: Creating AWS Deployment
         run: |
