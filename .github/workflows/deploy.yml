@@ -21,13 +21,14 @@ jobs:
 
       # Initialize Node.js
       - name: Install Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
       # Install project dependencies, test and build
       - name: Install dependencies
-        run: npm Install
+        run: npm install
       - name: Run build
         run: npm run build
 
