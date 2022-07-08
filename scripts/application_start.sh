@@ -18,6 +18,6 @@ export NVM_DIR="$HOME/.nvm"
 cp /home/ubuntu/.env .
 
 #start node app in pm2
-#pm2 start server.js
-#pm2 startup
-#pm2 save
+pm2 stop all
+pm2 start server.js
+pm2 save
