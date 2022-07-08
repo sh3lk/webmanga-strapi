@@ -31,8 +31,8 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-        app-name: ['your-codedeploy-application']
-        deployment-group: ['your-codedeploy-deploy-group']
+        app-name: ['node-app']
+        deployment-group: ['node-deploy-group']
         repo: ['sh3lk/webmanga-strapi']
     steps:
       - uses: actions/checkout@v2
