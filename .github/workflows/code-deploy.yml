@@ -27,7 +27,9 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build
-  test:
+    - run: npm run test
+
+  delivery:
     needs: build
     runs-on: ubuntu-latest
     
@@ -45,7 +47,7 @@ jobs:
     - run: npm run test
 
   deploy:
-    needs: test
+    needs: delivery
     runs-on: ubuntu-latest
     
     strategy:
