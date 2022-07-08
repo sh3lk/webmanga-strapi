@@ -1,7 +1,4 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Github CI
+name: Github CI/CD
 
 on:
   push:
@@ -11,7 +8,7 @@ on:
 
 jobs:
   build:
-
+    name: CI
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,37 +26,55 @@ jobs:
     - run: npm run build
     - run: npm run test
 
-  delivery:
-    needs: build
-    runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        node-version: [14.x]
-        
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm run test
 
   deploy:
-    needs: delivery
+    name: CD
     runs-on: ubuntu-latest
-    
     strategy:
       matrix:
-        node-version: [14.x]
-        
+        app-name: ['projectx']
+        s3-bucket: ['projectx-codedeploy-deployments']
+        s3-filename: ['develop-aws-codedeploy-${{ github.sha }}']
+        deploy-group: ['develop']
+    needs: build
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm run test
+      - uses: actions/checkout@v2
+      # copying appspec file
+      - name: Copying appspec.yml
+        run: cp appspec.yml ./bin/app
+      # copying scripts
+      - name: Copying scripts
+        run: cp -R ./scripts ./bin/app/scripts
+      
+      # Install AWS CLI 2
+      - name: Install AWS CLI 2
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+      # Configure AWS credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+      # Deploy push to S3
+      - name: AWS Deploy push
+        run: |
+          aws deploy push \
+          --application-name ${{ matrix.app-name }} \
+          --description "Revision of the ${{ matrix.appname }}-${{ github.sha }}" \
+          --ignore-hidden-files \
+          --s3-location s3://${{ matrix.s3-bucket }}/${{ matrix.s3-filename }}.zip \
+          --source ./bin/app
+      # Creating deployment via CodeDeploy
+      - name: Creating AWS Deployment
+        run: |
+          aws deploy create-deployment \
+          --application-name ${{ matrix.app-name }} \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+          --deployment-group-name ${{ matrix.deploy-group }} \
+          --file-exists-behavior OVERWRITE \
+          --s3-location bucket=${{ matrix.s3-bucket }},key=${{ matrix.s3-filename }}.zip,bundleType=zip \
 
