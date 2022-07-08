@@ -36,18 +36,6 @@ jobs:
         repo: ['sh3lk/webmanga-strapi']
     steps:
       - uses: actions/checkout@v2
-      
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Build app
-        run: npm run build
-
       - name: Install AWS CLI 
         run: |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
