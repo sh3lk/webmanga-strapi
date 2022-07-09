@@ -12,7 +12,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 #install node modules
-#npm install
+npm install
 
 #copy .env
 cp /home/ubuntu/.env .
